@@ -28,7 +28,8 @@
     "release": "npm run lint && npm run prepack && changelogen --release --no-commit --no-tag && npm publish",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "prepare": "nuxt-module-build"
   },
   "workspaces": [
     "playground"
