@@ -94,6 +94,21 @@ export default defineNuxtConfig({
 })
 ```
 
+7. If you want an alias subdomain to redirect to the canonical tenant subdomain, configure `subDomainAliases` with a map of alias to tenant. For example, `page1alias.testdomain.com` can redirect to `page1.testdomain.com`.
+
+```js
+export default defineNuxtConfig({
+  modules: ['nuxt-multi-tenancy'],
+  multiTenancy: {
+    tenantDynamicRoute: 'site',
+    rootDomains: ["testdomain.com"],
+    subDomainAliases: {
+      page1alias: 'page1'
+    }
+  },
+})
+```
+
 ## Options
 
 Configure Nuxt Multi-tenancy module with the `multiTenancy` property.
@@ -108,6 +123,7 @@ export default defineNuxtConfig({
     strictSubdomains: true,
     sites: [],
     customDomains: {},
+    subDomainAliases: {},
   },
 })
 ```

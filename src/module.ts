@@ -12,6 +12,7 @@ export interface ModuleOptions {
   strictSubdomains?: boolean;
   sites?: string[];
   customDomains?: Record<string, string>;
+  subDomainAliases?: Record<string, string>;
 }
 
 const routerPatchFlag = "...configRouterOptions,";
@@ -27,13 +28,15 @@ export default defineNuxtModule<ModuleOptions>({
     strictSubdomains: true,
     sites: [],
     customDomains: {},
+    subDomainAliases: {},
   },
-  setup({ tenantDynamicRoute, rootDomains, strictSubdomains, sites, customDomains }, nuxt) {
+  setup({ tenantDynamicRoute, rootDomains, strictSubdomains, sites, customDomains, subDomainAliases }, nuxt) {
     nuxt.options.runtimeConfig.public = {
       ...nuxt.options.runtimeConfig.public,
       rootDomains,
       strictSubdomains,
-      customDomains
+      customDomains,
+      subDomainAliases,
     };
     const resolver = createResolver(import.meta.url);
     addPlugin(resolver.resolve("./runtime/plugin"));
@@ -89,7 +92,7 @@ export default defineNuxtModule<ModuleOptions>({
             subdomain = hostname.split('.')[0];
           }
 
-          const tenant = subdomain;
+          const tenant = ${JSON.stringify(subDomainAliases)}[subdomain] || subdomain;
 
           if (sites.has(tenant)) {
             return routes

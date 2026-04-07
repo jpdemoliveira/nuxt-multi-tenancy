@@ -16,6 +16,9 @@ export default defineNuxtConfig({
       "news.techgoda.net": "news",
       "news.nuxtdev.local": "news",
     },
+    subDomainAliases: {
+      vuejobsalias: "jobs",
+    },
   },
   devtools: { enabled: true },
 });
