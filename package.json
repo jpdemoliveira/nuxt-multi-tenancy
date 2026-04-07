@@ -23,13 +23,12 @@
     "dev:build": "nuxi build playground",
     "dev:generate": "nuxi generate playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "build": "nuxt-module-build",
+    "build": "npm run dev:prepare && npm run dev:build",
     "build:vercel": "yarn workspace nuxt-multi-tenancy-playground build",
     "release": "npm run lint && npm run prepack && changelogen --release --no-commit --no-tag && npm publish",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:watch": "vitest watch",
-    "prepare": "nuxt-module-build"
+    "test:watch": "vitest watch"
   },
   "workspaces": [
     "playground"
